@@ -99,7 +99,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="blockNumbLine1"/>
+           <widget class="QLineEdit" name="blockNumbLineC"/>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_2">
@@ -109,7 +109,14 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_2"/>
+           <widget class="QLineEdit" name="intensityLineC">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_3">
@@ -119,7 +126,11 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEdit_3"/>
+           <widget class="QLineEdit" name="middleLineC">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label_11">
@@ -129,21 +140,28 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdit_4"/>
+           <widget class="QLineEdit" name="lineEdit_4">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
         <item row="2" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QPushButton" name="controlBut">
+           <widget class="QPushButton" name="controlButUpdate">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>обновить значения</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="controlButShow">
             <property name="text">
              <string>отобразить систему</string>
             </property>
@@ -222,13 +240,21 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_6"/>
+           <widget class="QLineEdit" name="intensityLineG">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="blockNumbLine2"/>
+           <widget class="QLineEdit" name="blockNumbLineG"/>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEdit_7"/>
+           <widget class="QLineEdit" name="middleLineG">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label_8">
@@ -245,21 +271,28 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdit_8"/>
+           <widget class="QLineEdit" name="lineEdit_8">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
         <item row="2" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
-           <widget class="QPushButton" name="gidravlBut">
+           <widget class="QPushButton" name="gidravlButUpdate">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>обновить значения</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="gidravlButShow">
             <property name="text">
              <string>отобразить систему</string>
             </property>
@@ -340,7 +373,7 @@
      <x>0</x>
      <y>0</y>
      <width>895</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

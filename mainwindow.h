@@ -17,12 +17,18 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_controlBut_clicked();
-
-    void on_gidravlBut_clicked();
+    void on_controlButUpdate_clicked();
+    void on_gidravlButUpdate_clicked();
+    void on_gidravlButShow_clicked();
+    void on_controlButShow_clicked();
 
 private:
     Ui::MainWindow *ui;
+    SystemPart *control;
+    SystemPart *gidravl;
+    QWidget *factorWidget;
+    bool cMark;
+    bool gMark;
 };
 
 #endif // MAINWINDOW_H

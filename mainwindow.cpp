@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    cMark = false;
+    gMark = false;
 }
 
 MainWindow::~MainWindow()
@@ -13,14 +15,52 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_controlBut_clicked()
+void MainWindow::on_controlButUpdate_clicked()
 {
-    SystemPart *w = new SystemPart(ui->blockNumbLine1->text().toInt(NULL, 10));
-    w->show();
+    ui->intensityLineC->setText(QString::number(control->getSumIntensity()));
+    if (control->getSumIntensity()!=0) {
+        ui->middleLineC->setText(QString::number((double)1/control->getSumIntensity(),'g',6));
+    }
 }
 
-void MainWindow::on_gidravlBut_clicked()
+void MainWindow::on_gidravlButUpdate_clicked()
 {
-    SystemPart *w = new SystemPart(ui->blockNumbLine2->text().toInt(NULL, 10));
-    w->show();
+    ui->intensityLineG->setText(QString::number(gidravl->getSumIntensity()));
+    if (gidravl->getSumIntensity()!=0) {
+        ui->middleLineG->setText(QString::number((double)1/gidravl->getSumIntensity(),'g',6));
+    }
+}
+
+void MainWindow::on_gidravlButShow_clicked()
+{
+    if (!gMark) {
+        gidravl = new SystemPart(ui->blockNumbLineG->text().toInt(NULL, 10));
+        ui->blockNumbLineG->setReadOnly(true);
+        ui->gidravlButUpdate->setEnabled(true);
+        gMark = true;
+    }
+    factorWidget = new QWidget();
+    QGridLayout *layout = new QGridLayout();
+    layout->addWidget(gidravl);
+    factorWidget->setLayout(layout);
+    factorWidget->setFixedSize(1000, 600);
+    factorWidget->setWindowTitle("гидравлическая система");
+    factorWidget->show();
+}
+
+void MainWindow::on_controlButShow_clicked()
+{
+    if (!cMark) {
+        control = new SystemPart(ui->blockNumbLineC->text().toInt(NULL, 10));
+        ui->blockNumbLineC->setReadOnly(true);
+        ui->controlButUpdate->setEnabled(true);
+        cMark = true;
+    }
+    factorWidget = new QWidget();
+    QGridLayout *layout = new QGridLayout();
+    layout->addWidget(control);
+    factorWidget->setLayout(layout);
+    factorWidget->setFixedSize(1000, 600);
+    factorWidget->setWindowTitle("система управления");
+    factorWidget->show();
 }

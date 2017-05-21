@@ -19,6 +19,15 @@ SystemPart::~SystemPart()
     delete ui;
 }
 
+int SystemPart::getSumIntensity()
+{
+    int answer = 0;
+    for (int i = 0; i < elementList.size(); i++) {
+        answer+= elementList.at(i)->getResultSum();
+    }
+    return answer;
+}
+
 void SystemPart::on_pushButton_clicked()
 {
     createElementWidget(ui->toolBox->count());

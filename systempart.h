@@ -17,11 +17,11 @@ class SystemPart : public QWidget
 public:
     explicit SystemPart(int blockNumb, QWidget *parent = 0);
     ~SystemPart();
+    int getSumIntensity();
 
 private slots:
     void on_pushButton_clicked();
     void slotChangeCurrentClass();
-
     void on_buttonChanges_clicked();
 
 private:

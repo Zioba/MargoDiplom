@@ -2,6 +2,7 @@
 #define ELEMENT_H
 
 #include <QTableWidget>
+#include <QComboBox>
 #include <QDebug>
 
 class Element : public QTableWidget
@@ -13,6 +14,7 @@ public:
 
     int getNumber() const;
     void setNumber(int value);
+    int getResultSum();
 
 private:
     int number;

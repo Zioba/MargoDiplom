@@ -30,8 +30,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>486</width>
-        <height>282</height>
+        <width>482</width>
+        <height>266</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -45,8 +45,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>468</width>
-            <height>237</height>
+            <width>460</width>
+            <height>213</height>
            </rect>
           </property>
           <attribute name="label">
@@ -83,5 +83,22 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>SystemPart</sender>
+   <signal>destroyed()</signal>
+   <receiver>SystemPart</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>252</x>
+     <y>180</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>252</x>
+     <y>180</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
