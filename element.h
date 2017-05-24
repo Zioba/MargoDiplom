@@ -10,7 +10,7 @@ class Element : public QTableWidget
     Q_OBJECT
 
 public:
-    Element();
+    Element(int type);
 
     int getNumber() const;
     void setNumber(int value);
@@ -18,6 +18,7 @@ public:
 
 private:
     int number;
+    int type;
 
     void makeCap();
     void makeRows();

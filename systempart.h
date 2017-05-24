@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QLabel>
 #include <element.h>
 
 namespace Ui {
@@ -28,6 +29,11 @@ private:
     Ui::SystemPart *ui;
 
     QList<Element*> elementList;
+    QList<Element*> resistorList;
+    QList<Element*> condensatorList;
+    QList<Element*> microList;
+    QList<Element*> connectorList;
+    QList<Element*> polupList;
 
     void createElementWidget(int x);
 };

@@ -1,8 +1,9 @@
 #include "element.h"
 
-Element::Element() : QTableWidget()
+Element::Element(int type) : QTableWidget()
 {
     number = 0;
+    this->type = type;
     makeCap();
 }
 
@@ -20,18 +21,9 @@ void Element::setNumber(int value)
     this->setRowCount(number);
     for (int i=0; i<this->rowCount(); i++) {
         for (int j=0; j<this->columnCount(); j++) {
-            if (j != 0) {
-                QTableWidgetItem *item = new QTableWidgetItem();
-                item->setText("0");
-                this->setItem(i,j,item);
-            }
-            else {
-                QComboBox *item = new QComboBox();
-                item->addItem("контроллер");
-                item->addItem("конденсатор");
-                item->addItem("резистор");
-                this->setCellWidget(i,j,item);
-            }
+            QTableWidgetItem *item = new QTableWidgetItem();
+            item->setText("0");
+            this->setItem(i,j,item);
         }
     }
     connect(this, SIGNAL(cellChanged(int,int)), this, SLOT(slotUpdateComposition(int, int)));
@@ -40,25 +32,58 @@ void Element::setNumber(int value)
 int Element::getResultSum()
 {
     int answer = 0;
+    int x = this->columnCount()-1;
     for (int i = 0; i < this->rowCount(); i++) {
-        answer+= this->item(i,3)->text().toInt(NULL,10);
+        answer+= this->item(i,x)->text().toInt(NULL,10);
     }
     return answer;
 }
 
 void Element::makeCap()
 {
-    this->setColumnCount(4);
     QStringList LowerTableHeaders;
-    LowerTableHeaders << "тип элемента" << "интенсивность" << "количество" << "произведение";
-    this->setHorizontalHeaderLabels(LowerTableHeaders);
+    switch (this->type) {
+    case 0:
+        this->setColumnCount(3);
+        LowerTableHeaders << "интенсивность" << "количество" << "произведение";
+        this->setHorizontalHeaderLabels(LowerTableHeaders);
+        break;
+    case 1:
+        this->setColumnCount(6);
+        LowerTableHeaders << "интенсивность" << "Кр" << "Кэ" << "Км" << "количество" << "произведение";
+        this->setHorizontalHeaderLabels(LowerTableHeaders);
+        break;
+    case 2:
+        this->setColumnCount(6);
+        LowerTableHeaders << "интенсивность" << "Кс" << "Кр" << "Кэ" << "количество" << "произведение";
+        this->setHorizontalHeaderLabels(LowerTableHeaders);
+        break;
+    case 3:
+        this->setColumnCount(5);
+        LowerTableHeaders << "интенсивность" << "К(с.т)" << "Кэ" << "количество" << "произведение";
+        this->setHorizontalHeaderLabels(LowerTableHeaders);
+        break;
+    case 4:
+        this->setColumnCount(6);
+        LowerTableHeaders << "интенсивность" << "Кc" << "Кk" << "Кэ" << "количество" << "произведение";
+        this->setHorizontalHeaderLabels(LowerTableHeaders);
+        break;
+    default:
+        this->setColumnCount(4);
+        LowerTableHeaders << "интенсивность" << "Коб" << "количество" << "произведение";
+        this->setHorizontalHeaderLabels(LowerTableHeaders);
+        break;
+    }
 }
 
 void Element::slotUpdateComposition(int x, int y)
 {
-    if (y == 3) return;
+    if (y == this->columnCount()-1) return;
     QTableWidgetItem *item = new QTableWidgetItem();
-    int a = this->item(x,1)->text().toInt(NULL,10)*this->item(x,2)->text().toInt(NULL,10);
+    int a = 0;
+    for (int i = 0; i < this->columnCount()-1; i++) {
+        a+= this->item(x,i)->text().toInt(NULL,10);
+    }
     item->setText(QString::number(a));
-    this->setItem(x,3,item);
+    this->setItem(x, this->columnCount()-1, item);
 }

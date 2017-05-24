@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>506</width>
-    <height>362</height>
+    <width>778</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -30,8 +30,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>482</width>
-        <height>266</height>
+        <width>758</width>
+        <height>373</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -45,8 +45,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>460</width>
-            <height>213</height>
+            <width>740</width>
+            <height>328</height>
            </rect>
           </property>
           <attribute name="label">
@@ -60,25 +60,147 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
       <widget class="QLineEdit" name="lineChanges"/>
      </item>
-     <item>
+     <item row="0" column="1">
       <widget class="QPushButton" name="buttonChanges">
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="text">
-        <string>Изменить количество элементов</string>
+        <string>Изменить количество обычных элементов</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="lineChanges_2"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="buttonChanges_2">
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Изменить количество резисторов</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLineEdit" name="lineChanges_3"/>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="buttonChanges_3">
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Изменить количество конденсаторов</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLineEdit" name="lineChanges_4"/>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="buttonChanges_6">
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Изменить количество микросхем</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLineEdit" name="lineChanges_5"/>
+     </item>
+     <item row="4" column="1">
+      <widget class="QPushButton" name="buttonChanges_5">
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Изменить количество соеденителей</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLineEdit" name="lineChanges_6"/>
+     </item>
+     <item row="5" column="1">
+      <widget class="QPushButton" name="buttonChanges_4">
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Изменить количество полупроводниковых элементов</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>Вернутся</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Вернутся</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

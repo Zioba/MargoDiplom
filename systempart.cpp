@@ -36,10 +36,22 @@ void SystemPart::on_pushButton_clicked()
 void SystemPart::createElementWidget(int x)
 {
     QWidget *widget = new QWidget();
-    Element *element = new Element();
-    elementList << element;
     QVBoxLayout *vBoxLayoutMain = new QVBoxLayout();
+    //1
+    QLabel *label = new QLabel();
+    label->setText("Обычные элементы");
+    vBoxLayoutMain->addWidget(label);
+    Element *element = new Element(0);
+    elementList << element;
     vBoxLayoutMain->addWidget(element);
+    //2
+    label = new QLabel();
+    label->setText("Резисторы");
+    vBoxLayoutMain->addWidget(label);
+    element = new Element(1);
+    resistorList << element;
+    vBoxLayoutMain->addWidget(element);
+    //3
     widget->setLayout(vBoxLayoutMain);
     ui->toolBox->addItem(widget, "блок" + QString::number(x+1));
 }
