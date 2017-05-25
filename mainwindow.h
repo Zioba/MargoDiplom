@@ -21,12 +21,14 @@ private slots:
     void on_gidravlButUpdate_clicked();
     void on_gidravlButShow_clicked();
     void on_controlButShow_clicked();
+    void on_pushButton_3_clicked();
 
 private:
     Ui::MainWindow *ui;
     SystemPart *control;
     SystemPart *gidravl;
     QWidget *factorWidget;
+    double cycleTime;
     bool cMark;
     bool gMark;
 };

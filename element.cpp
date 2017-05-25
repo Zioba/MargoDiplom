@@ -80,9 +80,9 @@ void Element::slotUpdateComposition(int x, int y)
 {
     if (y == this->columnCount()-1) return;
     QTableWidgetItem *item = new QTableWidgetItem();
-    int a = 0;
-    for (int i = 0; i < this->columnCount()-1; i++) {
-        a+= this->item(x,i)->text().toInt(NULL,10);
+    int a = this->item(x,0)->text().toInt(NULL,10);
+    for (int i = 1; i < this->columnCount()-1; i++) {
+        a*= this->item(x,i)->text().toInt(NULL,10);
     }
     item->setText(QString::number(a));
     this->setItem(x, this->columnCount()-1, item);

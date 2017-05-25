@@ -24,7 +24,11 @@ private slots:
     void on_pushButton_clicked();
     void slotChangeCurrentClass();
     void on_buttonChanges_clicked();
-
+    void on_buttonChanges_2_clicked();
+    void on_buttonChanges_3_clicked();
+    void on_buttonChanges_4_clicked();
+    void on_buttonChanges_5_clicked();
+    void on_buttonChanges_6_clicked();
 private:
     Ui::SystemPart *ui;
 

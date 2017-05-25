@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     cMark = false;
     gMark = false;
+    this->cycleTime = 0;
+    ui->lineEdit->setText("0");
 }
 
 MainWindow::~MainWindow()
@@ -20,6 +22,7 @@ void MainWindow::on_controlButUpdate_clicked()
     ui->intensityLineC->setText(QString::number(control->getSumIntensity()));
     if (control->getSumIntensity()!=0) {
         ui->middleLineC->setText(QString::number((double)1/control->getSumIntensity(),'g',6));
+        ui->lineEdit_4->setText(QString::number(((double)1/control->getSumIntensity())/cycleTime,'g',6));
     }
 }
 
@@ -28,6 +31,7 @@ void MainWindow::on_gidravlButUpdate_clicked()
     ui->intensityLineG->setText(QString::number(gidravl->getSumIntensity()));
     if (gidravl->getSumIntensity()!=0) {
         ui->middleLineG->setText(QString::number((double)1/gidravl->getSumIntensity(),'g',6));
+        ui->lineEdit_8->setText(QString::number(((double)1/gidravl->getSumIntensity())/cycleTime,'g',6));
     }
 }
 
@@ -63,4 +67,9 @@ void MainWindow::on_controlButShow_clicked()
     factorWidget->setFixedSize(1000, 600);
     factorWidget->setWindowTitle("система управления");
     factorWidget->show();
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    this->cycleTime = ui->lineEdit->text().toDouble(NULL);
 }

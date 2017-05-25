@@ -113,7 +113,7 @@
       <widget class="QLineEdit" name="lineChanges_4"/>
      </item>
      <item row="3" column="1">
-      <widget class="QPushButton" name="buttonChanges_6">
+      <widget class="QPushButton" name="buttonChanges_4">
        <property name="maximumSize">
         <size>
          <width>300</width>
@@ -145,7 +145,7 @@
       <widget class="QLineEdit" name="lineChanges_6"/>
      </item>
      <item row="5" column="1">
-      <widget class="QPushButton" name="buttonChanges_4">
+      <widget class="QPushButton" name="buttonChanges_6">
        <property name="maximumSize">
         <size>
          <width>300</width>
