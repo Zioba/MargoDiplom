@@ -26,11 +26,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     systempart.cpp \
-    element.cpp
+    element.cpp \
+    reportframe.cpp
 
 HEADERS  += mainwindow.h \
     systempart.h \
-    element.h
+    element.h \
+    reportframe.h
 
 FORMS    += mainwindow.ui \
-    systempart.ui
+    systempart.ui \
+    reportframe.ui

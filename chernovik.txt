@@ -1,0 +1,30 @@
+<!-- Add your HTML Here  -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  	<meta name="description" content="Free Web content">
+  	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  	<meta name="author" content="Yurkov Aleksandr">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  
+  <body>
+    <title>Отчет о надежности </title>
+    <h1 align=center>Отчет о надежности</h1>
+    <h2 align=left><FONT size=7>Система управления </FONT></h2>
+      <FONT size=4>
+        <b>Количество блоков: </b>0<br>
+    	<b>Интенсивность отказов: </b>0<br>
+    	<b>Средняя наработка на отказ: </b>0<br>
+    	<b>Количество полных циклов работы по рассчитанным показателям надежности: </b>0<br> 
+	  </FONT>
+	<h3 align=left> <FONT size=10>Гидравлическая система</FONT><h3>
+      <FONT size=4>
+    	<b>Количество блоков: </b>0<br>
+    	<b>Интенсивность отказов: </b>0<br>
+    	<b>Средняя наработка на отказ: </b>0<br>
+    	<b>Количество полных циклов работы по рассчитанным показателям надежности: </b>0<br> 
+	  </FONT>
+  </body>
+</html>

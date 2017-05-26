@@ -73,3 +73,32 @@ void MainWindow::on_pushButton_3_clicked()
 {
     this->cycleTime = ui->lineEdit->text().toDouble(NULL);
 }
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QString s = "<HTML>";
+    s=s+"<HEAD>"+
+                    "<TITLE>Управление разрывом строк </Title>"+
+            "</HEAD>"+
+            "<BODY>"+
+            "<H1 align=center>Отчет о надежности</H1>"+
+            "<H2 align=left><FONT SIZE=7>Система управления</H2>"+
+              "<FONT SIZE=4>"+
+                "<B>Количество блоков: </B>"+ui->blockNumbLineC->text()+"<br>"+
+                "<B>Интенсивность отказов: </B>"+ui->intensityLineC->text()+"<br>"+
+                "<B>Средняя наработка на отказ: </B>"+ui->middleLineC->text()+"<br>"+
+                "<B>Количество полных циклов работы по рассчитанным показателям надежности: </B>"+ui->lineEdit_4->text()+"<br>"+
+            "<H3 align=left> <FONT SIZE=10>Гидравлическая система</H3>"+
+              "<FONT SIZE=4>"+
+                "<B>Количество блоков: </B>"+ui->blockNumbLineG->text()+"<br>"+
+                "<B>Интенсивность отказов: </B>"+ui->intensityLineG->text()+"<br>"+
+                "<B>Средняя наработка на отказ: </B>"+ui->middleLineG->text()+"<br>"+
+                "<B>Количество полных циклов работы по рассчитанным показателям надежности: </B>"+ui->lineEdit_8->text()+"<br>"+
+            "</BODY>"+
+            "</HTML>";
+    ReportFrame *frame = new ReportFrame(s);
+    frame->show();
+    QTextDocumentWriter writer("report.html", "plaintext");
+    QTextDocument *doc = new QTextDocument(s);
+    writer.write(doc);
+}

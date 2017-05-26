@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <systempart.h>
+#include <reportframe.h>
+#include <QTextDocumentWriter>
+#include <QTextDocument>
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +25,7 @@ private slots:
     void on_gidravlButShow_clicked();
     void on_controlButShow_clicked();
     void on_pushButton_3_clicked();
+    void on_pushButton_4_clicked();
 
 private:
     Ui::MainWindow *ui;
