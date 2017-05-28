@@ -42,6 +42,8 @@ void MainWindow::on_gidravlButShow_clicked()
         ui->blockNumbLineG->setReadOnly(true);
         ui->gidravlButUpdate->setEnabled(true);
         gMark = true;
+        ui->excelButton->setEnabled(false);
+        connect(gidravl, SIGNAL(helloBitch()), this, SLOT(closeSystemPart()));
     }
     factorWidget = new QWidget();
     QGridLayout *layout = new QGridLayout();
@@ -59,6 +61,8 @@ void MainWindow::on_controlButShow_clicked()
         ui->blockNumbLineC->setReadOnly(true);
         ui->controlButUpdate->setEnabled(true);
         cMark = true;
+        ui->excelButton->setEnabled(false);
+        connect(control, SIGNAL(helloBitch()), this, SLOT(closeSystemPart()));
     }
     factorWidget = new QWidget();
     QGridLayout *layout = new QGridLayout();
@@ -76,29 +80,189 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::on_pushButton_4_clicked()
 {
-    QString s = "<HTML>";
-    s=s+"<HEAD>"+
-                    "<TITLE>Управление разрывом строк </Title>"+
-            "</HEAD>"+
-            "<BODY>"+
-            "<H1 align=center>Отчет о надежности</H1>"+
-            "<H2 align=left><FONT SIZE=7>Система управления</H2>"+
-              "<FONT SIZE=4>"+
-                "<B>Количество блоков: </B>"+ui->blockNumbLineC->text()+"<br>"+
-                "<B>Интенсивность отказов: </B>"+ui->intensityLineC->text()+"<br>"+
-                "<B>Средняя наработка на отказ: </B>"+ui->middleLineC->text()+"<br>"+
-                "<B>Количество полных циклов работы по рассчитанным показателям надежности: </B>"+ui->lineEdit_4->text()+"<br>"+
-            "<H3 align=left> <FONT SIZE=10>Гидравлическая система</H3>"+
-              "<FONT SIZE=4>"+
-                "<B>Количество блоков: </B>"+ui->blockNumbLineG->text()+"<br>"+
-                "<B>Интенсивность отказов: </B>"+ui->intensityLineG->text()+"<br>"+
-                "<B>Средняя наработка на отказ: </B>"+ui->middleLineG->text()+"<br>"+
-                "<B>Количество полных циклов работы по рассчитанным показателям надежности: </B>"+ui->lineEdit_8->text()+"<br>"+
-            "</BODY>"+
-            "</HTML>";
+    QString s = "<!DOCTYPE html>";
+    int x1 = control->getSumIntensity();
+    int x2 = gidravl->getSumIntensity();
+    s = s + "<html>"+
+      "<head>"+
+        "<meta charset=\"UTF-8\">"+
+        "<meta name=\"description\" content=\"Free Web content\">"+
+        "<meta name=\"keywords\" content=\"HTML,CSS,XML,JavaScript\">"+
+        "<meta name=\"author\" content=\"Yurkov Aleksandr\">"+
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
+      "</head>"+
+      "<body>"+
+        "<title>Отчет о надежности </title>"+
+        "<h1 align=center>Отчет о надежности</h1>"+
+        "<h2 align=left><FONT size=7>Система управления </FONT></h2>"+
+          "<FONT size=4>"+
+            "<b>Количество блоков: </b>"+ui->blockNumbLineC->text()+"<br>"+
+            "<b>Интенсивность отказов: </b>"+ui->intensityLineC->text()+"<br>"+
+            "<b>Средняя наработка на отказ: </b>"+ui->middleLineC->text()+"<br>"+
+            "<b>Количество полных циклов работы по рассчитанным показателям надежности: </b>"+ui->lineEdit_4->text()+"<br>"+
+          "</FONT>"+
+        "<h3 align=left> <FONT size=10>Гидравлическая система</FONT><h3>"+
+          "<FONT size=4>"+
+            "<b>Количество блоков: </b>"+ui->blockNumbLineG->text()+"<br>"+
+            "<b>Интенсивность отказов: </b>"+ui->intensityLineG->text()+"<br>"+
+            "<b>Средняя наработка на отказ: </b>"+ui->middleLineC->text()+"<br>"+
+            "<b>Количество полных циклов работы по рассчитанным показателям надежности: </b>"+ui->lineEdit_4->text()+"<br>"+
+          "</FONT>"+
+        "<h4 align=left> <FONT size=10>Общие параметры системы</FONT><h4>"+
+          "<FONT size=4>"+
+            "<b>Интенсивность отказов: </b>"+QString::number((x1+x2)*1.5)+"<br>"+
+            "<b>Средняя наработка на отказ: </b>"+QString::number(((double)1/((x1+x2)*1.5)),'g',6)+"<br>"+
+            "<b>Количество полных циклов работы: </b>"+QString::number(((double)1/((x1+x2)*1.5))/cycleTime,'g',6)+"<br>"+
+          "</FONT>"+
+      "</body>"+
+    "</html>";
     ReportFrame *frame = new ReportFrame(s);
     frame->show();
     QTextDocumentWriter writer("report.html", "plaintext");
     QTextDocument *doc = new QTextDocument(s);
     writer.write(doc);
+}
+
+void MainWindow::closeSystemPart()
+{
+    factorWidget->hide();
+}
+
+void MainWindow::on_excelButton_clicked()
+{
+    QAxObject* excel = new QAxObject("Excel.Application", 0);
+    QAxObject* workbooks = excel->querySubObject("Workbooks");
+    QAxObject* workbook = workbooks->querySubObject("Open(const QString&)", "D:\\margo.xlsx");
+    QAxObject* sheets = workbook->querySubObject("Worksheets");
+    QAxObject* sheet = sheets->querySubObject("Item(int)", 1);
+    QAxObject* cell = sheet->querySubObject("Cells(int,int)", 2, 2);
+    QVariant value = cell->property("Value");
+    int blockN = value.toInt();
+//создаем систему управления
+    control = new SystemPart(blockN);
+    ui->blockNumbLineC->setText(QString::number(blockN));
+    ui->blockNumbLineC->setReadOnly(true);
+    ui->controlButUpdate->setEnabled(true);
+    cMark = true;
+    connect(control, SIGNAL(helloBitch()), this, SLOT(closeSystemPart()));
+//===
+    int i = 3;
+    for (int blockI = 0; blockI < blockN; blockI++) {
+        for (int j = 0; j < 6; j++) {
+            cell = sheet->querySubObject("Cells(int,int)", i, 2);
+            value = cell->property("Value");
+            int tableN = value.toInt();
+            setTableSize(control,blockI,tableN,j);
+            i++;
+            i++;
+            for (int tableI = 0; tableI < tableN; tableI++) {
+                for (int q = 0; q < getTableSize(j); q++) {
+                    cell = sheet->querySubObject("Cells(int,int)", i, q+2);
+                    value = cell->property("Value");
+                    fillCell(control, blockI, tableI, q, value.toInt(), j);
+                }
+                i++;
+            }
+        }
+    }
+    i++;
+    cell = sheet->querySubObject("Cells(int,int)", i, 2);
+    value = cell->property("Value");
+    blockN = value.toInt();
+//создаем гидравлическую систему
+    gidravl = new SystemPart(blockN);
+    ui->blockNumbLineG->setText(QString::number(blockN));
+    ui->blockNumbLineG->setReadOnly(true);
+    ui->gidravlButUpdate->setEnabled(true);
+    gMark = true;
+    ui->excelButton->setEnabled(false);
+    connect(gidravl, SIGNAL(helloBitch()), this, SLOT(closeSystemPart()));
+//===
+    i++;
+    for (int blockI = 0; blockI < blockN; blockI++) {
+        for (int j = 0; j < 6; j++) {
+            cell = sheet->querySubObject("Cells(int,int)", i, 2);
+            value = cell->property("Value");
+            int tableN = value.toInt();
+            setTableSize(gidravl,blockI,tableN,j);
+            i++;
+            i++;
+            for (int tableI = 0; tableI < tableN; tableI++) {
+                for (int q = 0; q < getTableSize(j); q++) {
+                    cell = sheet->querySubObject("Cells(int,int)", i, q+2);
+                    value = cell->property("Value");
+                    fillCell(gidravl, blockI, tableI, q, value.toInt(), j);
+                }
+                i++;
+            }
+        }
+    }
+    workbook->dynamicCall("Close()");
+    excel->dynamicCall("Quit()");
+}
+
+void MainWindow::setTableSize(SystemPart *s, int block, int size, int n)
+{
+    switch (n) {
+    case 0:
+        s->setExcel1(block, size);
+        break;
+    case 1:
+        s->setExcel2(block, size);
+        break;
+    case 2:
+        s->setExcel3(block, size);
+        break;
+    case 3:
+        s->setExcel4(block, size);
+        break;
+    case 4:
+        s->setExcel5(block, size);
+        break;
+    default:
+        s->setExcel6(block, size);
+        break;
+    }
+}
+
+void MainWindow::fillCell(SystemPart *s, int block, int x, int y, int value, int n)
+{
+    switch (n) {
+    case 0:
+        s->setCell1(block, x, y, value);
+        break;
+    case 1:
+        s->setCell2(block, x, y, value);
+        break;
+    case 2:
+        s->setCell3(block, x, y, value);
+        break;
+    case 3:
+        s->setCell4(block, x, y, value);
+        break;
+    case 4:
+        s->setCell5(block, x, y, value);
+        break;
+    default:
+        s->setCell6(block, x, y, value);
+        break;
+    }
+}
+
+int MainWindow::getTableSize(int x)
+{
+    switch (x) {
+    case 0:
+        return 2;
+    case 1:
+        return 5;
+    case 2:
+        return 5;
+    case 3:
+        return 4;
+    case 4:
+        return 5;
+    default:
+        return 3;
+    }
 }

@@ -359,6 +359,13 @@
      </layout>
     </item>
     <item>
+     <widget class="QPushButton" name="excelButton">
+      <property name="text">
+       <string>Считать данные из документа Excel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="pushButton_4">
       <property name="text">
        <string>Общий отчет о надёжности</string>
@@ -373,7 +380,7 @@
      <x>0</x>
      <y>0</y>
      <width>895</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

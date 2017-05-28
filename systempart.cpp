@@ -33,9 +33,69 @@ int SystemPart::getSumIntensity()
     return answer;
 }
 
+void SystemPart::setExcel1(int block, int x)
+{
+    elementList.at(block)->setNumber(x);
+}
+
+void SystemPart::setExcel2(int block, int x)
+{
+    resistorList.at(block)->setNumber(x);
+}
+
+void SystemPart::setExcel3(int block, int x)
+{
+    condensatorList.at(block)->setNumber(x);
+}
+
+void SystemPart::setExcel4(int block, int x)
+{
+    microList.at(block)->setNumber(x);
+}
+
+void SystemPart::setExcel5(int block, int x)
+{
+    connectorList.at(block)->setNumber(x);
+}
+
+void SystemPart::setExcel6(int block, int x)
+{
+    polupList.at(block)->setNumber(x);
+}
+
+void SystemPart::setCell1(int block, int x, int y, int value)
+{
+    elementList.at(block)->setElement(x,y,value);
+}
+
+void SystemPart::setCell2(int block, int x, int y, int value)
+{
+    resistorList.at(block)->setElement(x,y,value);
+}
+
+void SystemPart::setCell3(int block, int x, int y, int value)
+{
+    condensatorList.at(block)->setElement(x,y,value);
+}
+
+void SystemPart::setCell4(int block, int x, int y, int value)
+{
+    microList.at(block)->setElement(x,y,value);
+}
+
+void SystemPart::setCell5(int block, int x, int y, int value)
+{
+    connectorList.at(block)->setElement(x,y,value);
+}
+
+void SystemPart::setCell6(int block, int x, int y, int value)
+{
+    polupList.at(block)->setElement(x,y,value);
+}
+
 void SystemPart::on_pushButton_clicked()
 {
-    createElementWidget(ui->toolBox->count());
+    emit helloBitch();
 }
 
 void SystemPart::createElementWidget(int x)
@@ -97,42 +157,30 @@ void SystemPart::slotChangeCurrentClass()
 
 void SystemPart::on_buttonChanges_clicked()
 {
-    int x = ui->toolBox->currentIndex();
-    int p = ui->lineChanges->text().toInt(NULL,10);
-    elementList.at(x)->setNumber(p);
+    setExcel1(ui->toolBox->currentIndex(), ui->lineChanges->text().toInt(NULL,10));
 }
 
 void SystemPart::on_buttonChanges_2_clicked()
 {
-    int x = ui->toolBox->currentIndex();
-    int p = ui->lineChanges_2->text().toInt(NULL,10);
-    resistorList.at(x)->setNumber(p);
+    setExcel2(ui->toolBox->currentIndex(), ui->lineChanges_2->text().toInt(NULL,10));
 }
 
 void SystemPart::on_buttonChanges_3_clicked()
 {
-    int x = ui->toolBox->currentIndex();
-    int p = ui->lineChanges_3->text().toInt(NULL,10);
-    condensatorList.at(x)->setNumber(p);
+    setExcel3(ui->toolBox->currentIndex(), ui->lineChanges_3->text().toInt(NULL,10));
 }
 
 void SystemPart::on_buttonChanges_4_clicked()
 {
-    int x = ui->toolBox->currentIndex();
-    int p = ui->lineChanges_4->text().toInt(NULL,10);
-    microList.at(x)->setNumber(p);
+    setExcel4(ui->toolBox->currentIndex(), ui->lineChanges_4->text().toInt(NULL,10));
 }
 
 void SystemPart::on_buttonChanges_5_clicked()
 {
-    int x = ui->toolBox->currentIndex();
-    int p = ui->lineChanges_5->text().toInt(NULL,10);
-    connectorList.at(x)->setNumber(p);
+    setExcel5(ui->toolBox->currentIndex(), ui->lineChanges_5->text().toInt(NULL,10));
 }
 
 void SystemPart::on_buttonChanges_6_clicked()
 {
-    int x = ui->toolBox->currentIndex();
-    int p = ui->lineChanges_6->text().toInt(NULL,10);
-    polupList.at(x)->setNumber(p);
+    setExcel6(ui->toolBox->currentIndex(), ui->lineChanges_6->text().toInt(NULL,10));
 }

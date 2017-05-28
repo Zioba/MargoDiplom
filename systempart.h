@@ -19,6 +19,22 @@ public:
     explicit SystemPart(int blockNumb, QWidget *parent = 0);
     ~SystemPart();
     int getSumIntensity();
+    void setExcel1(int block, int x);
+    void setExcel2(int block, int x);
+    void setExcel3(int block, int x);
+    void setExcel4(int block, int x);
+    void setExcel5(int block, int x);
+    void setExcel6(int block, int x);
+
+    void setCell1(int block, int x, int y, int value);
+    void setCell2(int block, int x, int y, int value);
+    void setCell3(int block, int x, int y, int value);
+    void setCell4(int block, int x, int y, int value);
+    void setCell5(int block, int x, int y, int value);
+    void setCell6(int block, int x, int y, int value);
+
+signals:
+    void helloBitch();
 
 private slots:
     void on_pushButton_clicked();
@@ -29,6 +45,7 @@ private slots:
     void on_buttonChanges_4_clicked();
     void on_buttonChanges_5_clicked();
     void on_buttonChanges_6_clicked();
+
 private:
     Ui::SystemPart *ui;
 

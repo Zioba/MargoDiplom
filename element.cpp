@@ -39,6 +39,14 @@ int Element::getResultSum()
     return answer;
 }
 
+void Element::setElement(int x, int y, int value)
+{
+    QTableWidgetItem *item = new QTableWidgetItem();
+    item->setText(QString::number(value));
+    this->setItem(x,y,item);
+    slotUpdateComposition(x,y);
+}
+
 void Element::makeCap()
 {
     QStringList LowerTableHeaders;
