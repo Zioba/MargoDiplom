@@ -40,7 +40,7 @@ private:
     bool gMark;
 
     void setTableSize(SystemPart *s, int block, int size, int n);
-    void fillCell(SystemPart *s, int block, int x, int y, int value, int n);
+    void fillCell(SystemPart *s, int block, int x, int y, double value, int n);
     int getTableSize(int x);
 };
 

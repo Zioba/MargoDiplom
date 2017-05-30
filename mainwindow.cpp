@@ -159,7 +159,9 @@ void MainWindow::on_excelButton_clicked()
                 for (int q = 0; q < getTableSize(j); q++) {
                     cell = sheet->querySubObject("Cells(int,int)", i, q+2);
                     value = cell->property("Value");
-                    fillCell(control, blockI, tableI, q, value.toInt(), j);
+                    double r = value.toDouble();
+                    qDebug() << r;
+                    fillCell(control, blockI, tableI, q, value.toDouble(), j);
                 }
                 i++;
             }
@@ -191,7 +193,7 @@ void MainWindow::on_excelButton_clicked()
                 for (int q = 0; q < getTableSize(j); q++) {
                     cell = sheet->querySubObject("Cells(int,int)", i, q+2);
                     value = cell->property("Value");
-                    fillCell(gidravl, blockI, tableI, q, value.toInt(), j);
+                    fillCell(gidravl, blockI, tableI, q, value.toDouble(), j);
                 }
                 i++;
             }
@@ -225,7 +227,7 @@ void MainWindow::setTableSize(SystemPart *s, int block, int size, int n)
     }
 }
 
-void MainWindow::fillCell(SystemPart *s, int block, int x, int y, int value, int n)
+void MainWindow::fillCell(SystemPart *s, int block, int x, int y, double value, int n)
 {
     switch (n) {
     case 0:

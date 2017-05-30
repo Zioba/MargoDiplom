@@ -19,9 +19,9 @@ SystemPart::~SystemPart()
     delete ui;
 }
 
-int SystemPart::getSumIntensity()
+double SystemPart::getSumIntensity()
 {
-    int answer = 0;
+    double answer = 0;
     for (int i = 0; i < elementList.size(); i++) {
         answer+= elementList.at(i)->getResultSum();
         answer+= resistorList.at(i)->getResultSum();
@@ -63,32 +63,32 @@ void SystemPart::setExcel6(int block, int x)
     polupList.at(block)->setNumber(x);
 }
 
-void SystemPart::setCell1(int block, int x, int y, int value)
+void SystemPart::setCell1(int block, int x, int y, double value)
 {
     elementList.at(block)->setElement(x,y,value);
 }
 
-void SystemPart::setCell2(int block, int x, int y, int value)
+void SystemPart::setCell2(int block, int x, int y, double value)
 {
     resistorList.at(block)->setElement(x,y,value);
 }
 
-void SystemPart::setCell3(int block, int x, int y, int value)
+void SystemPart::setCell3(int block, int x, int y, double value)
 {
     condensatorList.at(block)->setElement(x,y,value);
 }
 
-void SystemPart::setCell4(int block, int x, int y, int value)
+void SystemPart::setCell4(int block, int x, int y, double value)
 {
     microList.at(block)->setElement(x,y,value);
 }
 
-void SystemPart::setCell5(int block, int x, int y, int value)
+void SystemPart::setCell5(int block, int x, int y, double value)
 {
     connectorList.at(block)->setElement(x,y,value);
 }
 
-void SystemPart::setCell6(int block, int x, int y, int value)
+void SystemPart::setCell6(int block, int x, int y, double value)
 {
     polupList.at(block)->setElement(x,y,value);
 }

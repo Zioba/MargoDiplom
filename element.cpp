@@ -29,20 +29,20 @@ void Element::setNumber(int value)
     connect(this, SIGNAL(cellChanged(int,int)), this, SLOT(slotUpdateComposition(int, int)));
 }
 
-int Element::getResultSum()
+double Element::getResultSum()
 {
-    int answer = 0;
+    double answer = 0;
     int x = this->columnCount()-1;
     for (int i = 0; i < this->rowCount(); i++) {
-        answer+= this->item(i,x)->text().toInt(NULL,10);
+        answer+= this->item(i,x)->text().toDouble(NULL);
     }
     return answer;
 }
 
-void Element::setElement(int x, int y, int value)
+void Element::setElement(int x, int y, double value)
 {
     QTableWidgetItem *item = new QTableWidgetItem();
-    item->setText(QString::number(value));
+    item->setText(QString::number(value,'g',9));
     this->setItem(x,y,item);
     slotUpdateComposition(x,y);
 }
@@ -88,10 +88,10 @@ void Element::slotUpdateComposition(int x, int y)
 {
     if (y == this->columnCount()-1) return;
     QTableWidgetItem *item = new QTableWidgetItem();
-    int a = this->item(x,0)->text().toInt(NULL,10);
+    double a = this->item(x,0)->text().toDouble(NULL);
     for (int i = 1; i < this->columnCount()-1; i++) {
-        a*= this->item(x,i)->text().toInt(NULL,10);
+        a*= this->item(x,i)->text().toDouble(NULL);
     }
-    item->setText(QString::number(a));
+    item->setText(QString::number(a,'g',9));
     this->setItem(x, this->columnCount()-1, item);
 }

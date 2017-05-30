@@ -14,8 +14,8 @@ public:
 
     int getNumber() const;
     void setNumber(int value);
-    int getResultSum();
-    void setElement(int x,int y, int value);
+    double getResultSum();
+    void setElement(int x, int y, double value);
 
 private:
     int number;

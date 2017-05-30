@@ -18,7 +18,7 @@ class SystemPart : public QWidget
 public:
     explicit SystemPart(int blockNumb, QWidget *parent = 0);
     ~SystemPart();
-    int getSumIntensity();
+    double getSumIntensity();
     void setExcel1(int block, int x);
     void setExcel2(int block, int x);
     void setExcel3(int block, int x);
@@ -26,12 +26,12 @@ public:
     void setExcel5(int block, int x);
     void setExcel6(int block, int x);
 
-    void setCell1(int block, int x, int y, int value);
-    void setCell2(int block, int x, int y, int value);
-    void setCell3(int block, int x, int y, int value);
-    void setCell4(int block, int x, int y, int value);
-    void setCell5(int block, int x, int y, int value);
-    void setCell6(int block, int x, int y, int value);
+    void setCell1(int block, int x, int y, double value);
+    void setCell2(int block, int x, int y, double value);
+    void setCell3(int block, int x, int y, double value);
+    void setCell4(int block, int x, int y, double value);
+    void setCell5(int block, int x, int y, double value);
+    void setCell6(int block, int x, int y, double value);
 
 signals:
     void helloBitch();
