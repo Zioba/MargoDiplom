@@ -34,7 +34,7 @@ public:
     void setCell6(int block, int x, int y, double value);
 
 signals:
-    void helloBitch();
+    void closeWindowSignal();
 
 private slots:
     void on_pushButton_clicked();

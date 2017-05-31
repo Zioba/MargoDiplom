@@ -144,7 +144,7 @@ void MainWindow::on_excelButton_clicked()
     ui->blockNumbLineC->setReadOnly(true);
     ui->controlButUpdate->setEnabled(true);
     cMark = true;
-    connect(control, SIGNAL(helloBitch()), this, SLOT(closeSystemPart()));
+    connect(control, SIGNAL(closeWindowSignal()), this, SLOT(closeSystemPart()));
 //===
     int i = 3;
     for (int blockI = 0; blockI < blockN; blockI++) {
@@ -160,7 +160,6 @@ void MainWindow::on_excelButton_clicked()
                     cell = sheet->querySubObject("Cells(int,int)", i, q+2);
                     value = cell->property("Value");
                     double r = value.toDouble();
-                    qDebug() << r;
                     fillCell(control, blockI, tableI, q, value.toDouble(), j);
                 }
                 i++;

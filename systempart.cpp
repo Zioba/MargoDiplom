@@ -95,7 +95,7 @@ void SystemPart::setCell6(int block, int x, int y, double value)
 
 void SystemPart::on_pushButton_clicked()
 {
-    emit helloBitch();
+    emit closeWindowSignal();
 }
 
 void SystemPart::createElementWidget(int x)
